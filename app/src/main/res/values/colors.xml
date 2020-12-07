@@ -9,7 +9,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#4ca4fa</color>
+    <color name="colorPrimaryT">#004CA4FA</color>
+    <color name="colorPrimaryDark">#4ca4fa</color>
     <color name="colorAccent">#FFFFBB33</color>
-
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#fff</color>
     <color name="gray">#BDBDBD</color>
+    <color name="TT">#00FFFFFF</color>
+
 </resources>
