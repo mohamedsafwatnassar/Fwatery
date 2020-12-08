@@ -95,7 +95,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 tools:ignore="NotSibling" />
 
             <View
@@ -115,7 +115,7 @@
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 tools:ignore="NotSibling" />
 
         </LinearLayout>
