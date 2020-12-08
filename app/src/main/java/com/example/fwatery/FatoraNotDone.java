@@ -46,14 +46,14 @@ public class FatoraNotDone extends Fragment {
     List<Fatora> fatoraList;
     private void initRecyclerView() {
         fatoraList = new ArrayList<>();
-        fatoraList.add(new Fatora("mohamed safwat","01150500021","12/10/2020",55));
-        fatoraList.add(new Fatora("Ali","01150500021","12/10/2020",100));
-        fatoraList.add(new Fatora("Seif","01150500021","12/10/2020",400));
-        fatoraList.add(new Fatora("Nassar","01150500021","12/10/2020",999));
-        fatoraList.add(new Fatora("Nassar","01150500021","12/10/2020",999));
-        fatoraList.add(new Fatora("Nassar","01150500021","12/10/2020",999));
-        fatoraList.add(new Fatora("Nassar","01150500021","12/10/2020",999));
-        fatoraList.add(new Fatora("Nassar","01150500021","12/10/2020",999));
+        fatoraList.add(new Fatora("mohamed safwat","01150500021",55));
+        fatoraList.add(new Fatora("Ali","01150500021",100));
+        fatoraList.add(new Fatora("Seif","01150500021",400));
+        fatoraList.add(new Fatora("Nassar","01150500021",999));
+        fatoraList.add(new Fatora("Nassar","01150500021",999));
+        fatoraList.add(new Fatora("Nassar","01150500021",999));
+        fatoraList.add(new Fatora("Nassar","01150500021",999));
+        fatoraList.add(new Fatora("Nassar","01150500021",999));
         fatoraAdapter = new FatoraAdapter(getActivity(),fatoraList);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewFatoraNotDone.setHasFixedSize(true);

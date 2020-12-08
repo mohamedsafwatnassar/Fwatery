@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fwatery.Models.Fatora;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraViewHolder> {
@@ -37,7 +39,11 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         holder.name.setText(fatora.getName());
         holder.phone.setText(fatora.getPhone());
         holder.price.setText(new StringBuilder("$ ").append(fatora.getPrice()));
-        holder.date.setText(fatora.getDate());
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        String date = simpleDateFormat.format(calendar.getTime());
+        holder.date.setText(date);
     }
 
     @Override

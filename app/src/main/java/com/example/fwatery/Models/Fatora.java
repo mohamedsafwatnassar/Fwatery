@@ -14,10 +14,9 @@ public class Fatora {
     public Fatora() {
     }
 
-    public Fatora(String name, String phone, String date, float price) {
+    public Fatora(String name, String phone, float price) {
         Name = name;
         Phone = phone;
-        Date = date;
         Price = price;
     }
 
