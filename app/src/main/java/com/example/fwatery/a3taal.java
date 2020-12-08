@@ -27,7 +27,7 @@ public class a3taal extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_a3taal, container, false);
-        fab = view.findViewById(R.id.fab);
+        fab = view.findViewById(R.id.add_3otl);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

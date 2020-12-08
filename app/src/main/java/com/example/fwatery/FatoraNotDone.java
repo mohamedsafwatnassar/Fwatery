@@ -1,9 +1,11 @@
 package com.example.fwatery;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +20,9 @@ import java.util.List;
 public class FatoraNotDone extends Fragment {
 
     private RecyclerView recyclerViewFatoraNotDone;
-    private FloatingActionButton fab;
+    Dialog dialog;
+    View view ;
+    FloatingActionButton fab;
 
     FatoraAdapter fatoraAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -27,7 +31,6 @@ public class FatoraNotDone extends Fragment {
         // Required empty public constructor
     }
 
-    View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class FatoraNotDone extends Fragment {
         view = inflater.inflate(R.layout.fragment_fatora_not_done, container, false);
 
         initView();
+
         initRecyclerView();
         return view;
     }
@@ -60,6 +64,41 @@ public class FatoraNotDone extends Fragment {
 
     private void initView() {
         recyclerViewFatoraNotDone = view.findViewById(R.id.recyclerView_fatora_NotDone);
-        fab = view.findViewById(R.id.fab);
+        fab = view.findViewById(R.id.add_fat);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.add_fatora);
+
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                //dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog.setCancelable(false);
+                dialog.show();
+                Button add3otl = dialog.findViewById(R.id.Add_3otll);
+                Button cancel = dialog.findViewById(R.id.cancel);
+
+                add3otl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
     }
 }
