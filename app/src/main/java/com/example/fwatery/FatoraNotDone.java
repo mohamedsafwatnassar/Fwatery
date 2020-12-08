@@ -19,7 +19,7 @@ import java.util.List;
 
 public class FatoraNotDone extends Fragment {
 
-    private RecyclerView recyclerViewFatoraNotDone;
+    RecyclerView recyclerViewFatoraNotDone;
     Dialog dialog;
     View view ;
     FloatingActionButton fab;

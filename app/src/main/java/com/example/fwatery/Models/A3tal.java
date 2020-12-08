@@ -1,14 +1,21 @@
 package com.example.fwatery.Models;
 
-public class a3tal {
+public class A3tal {
     String Id ;
     String Name;
     String Phone ;
     String Address ;
-    String Note ;
+    String Note;
+    String date;
     Boolean State ;
 
-    public a3tal() {
+    public A3tal() {
+    }
+
+    public A3tal(String name, String phone, String address) {
+        Name = name;
+        Phone = phone;
+        Address = address;
     }
 
     public String getId() {
@@ -49,6 +56,14 @@ public class a3tal {
 
     public void setNote(String note) {
         Note = note;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Boolean getState() {
