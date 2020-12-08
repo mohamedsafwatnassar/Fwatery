@@ -149,8 +149,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorAccent"
+            app:backgroundTint="@color/colorAccent"
+            android:background="@color/colorAccent"
             android:src="@drawable/ic_add"
             />
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="320dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -24,7 +24,7 @@
         android:hint=" اسم العميل"
         android:textColor="@color/black"
         android:typeface="serif"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
@@ -37,7 +37,7 @@
         android:hint="  رقم الهاتف"
         android:textColor="@color/black"
         android:typeface="serif"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
@@ -49,7 +49,7 @@
         android:hint=" العنوان"
         android:textColor="@color/black"
         android:typeface="serif"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
@@ -62,7 +62,7 @@
         android:textColor="@color/black"
         android:typeface="serif"
         android:inputType="number"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
@@ -76,7 +76,7 @@
         android:textColor="@color/black"
         android:typeface="serif"
         android:inputType="number"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
@@ -90,7 +90,7 @@
         android:textColor="@color/black"
         android:typeface="serif"
         android:lines="5"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
