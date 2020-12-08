@@ -91,7 +91,7 @@
                 android:layout_weight="1.4"
                 android:background="@android:color/transparent"
                 android:gravity="center"
-                android:text="إضافة فاتورة"
+                android:text="إضافة عطل"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"

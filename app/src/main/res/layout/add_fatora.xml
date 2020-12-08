@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/background_custom_dialog"
+    android:gravity="center"
+    android:layout_gravity="center"
     android:layout_height="match_parent">
 
     <ImageView
@@ -92,29 +95,57 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Add_fatora"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textAllCaps="false"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="5dp"
-      >
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="20dp"
+        />
 
-        <TextView
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <Button
+            android:id="@+id/Add_fatora"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:text="إضافة فاتورة"
+            android:textAllCaps="false"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-    </androidx.cardview.widget.CardView>
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            tools:ignore="NotSibling" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="إغلاق "
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            tools:ignore="NotSibling" />
+
+    </LinearLayout>
+
 
 
 
