@@ -5,12 +5,20 @@ public class Fatora {
     String Name;
     String Phone ;
     String Address ;
-    String Note ;
+    String Note;
+    String Date;
     float Price ;
     float ExtraPackage ;
     Boolean State ;
 
     public Fatora() {
+    }
+
+    public Fatora(String name, String phone, String date, float price) {
+        Name = name;
+        Phone = phone;
+        Date = date;
+        Price = price;
     }
 
     public String getId() {
@@ -51,6 +59,14 @@ public class Fatora {
 
     public void setNote(String note) {
         Note = note;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 
     public float getPrice() {

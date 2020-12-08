@@ -11,13 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
-
-
-
         <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_curve"
@@ -37,7 +32,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
-
                 android:weightSum="3">
 
                 <TextView
@@ -61,7 +55,6 @@
                     android:text="7"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
             <View
@@ -72,8 +65,6 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/darker_gray" />
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,7 +98,6 @@
                     android:text="7"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
             <View
@@ -118,8 +108,14 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/darker_gray" />
-
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_fatora_NotDone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linear1"
+            android:layout_alignParentBottom="true" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -131,15 +127,8 @@
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/colorPrimary"
             app:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_add"
-            />
+            android:src="@drawable/ic_add" />
 
     </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        />
 </FrameLayout>

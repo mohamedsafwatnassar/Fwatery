@@ -16,20 +16,18 @@ public class a3taal extends Fragment {
 
     Dialog dialog;
     View view ;
-    FloatingActionButton fab ;
+    FloatingActionButton fab;
 
     public a3taal() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_a3taal, container, false);
-        fab = view.findViewById(R.id.add_3otl);
+        fab = view.findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,14 +59,8 @@ public class a3taal extends Fragment {
                     }
                 });
 
-
-
             }
         });
-
-
-
-
 
         return view;
     }

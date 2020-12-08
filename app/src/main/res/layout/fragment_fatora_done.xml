@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -31,7 +32,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-
                 android:orientation="horizontal"
                 android:weightSum="3">
 
@@ -67,14 +67,6 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/darker_gray" />
-
-
-
-
-
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,6 +104,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_gravity="center"
@@ -121,6 +114,13 @@
                 android:background="@android:color/darker_gray" />
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_fatora_Done"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linear1"
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

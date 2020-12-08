@@ -14,8 +14,7 @@
         android:layout_height="70dp"
         android:src="@drawable/logo"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="10dp" />
 
     <EditText
         android:id="@+id/Name"
@@ -81,6 +80,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/Note"
         android:layout_width="match_parent"

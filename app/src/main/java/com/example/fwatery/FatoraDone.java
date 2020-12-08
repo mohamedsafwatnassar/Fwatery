@@ -10,12 +10,9 @@ import android.view.ViewGroup;
 
 public class FatoraDone extends Fragment {
 
-
     public FatoraDone() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

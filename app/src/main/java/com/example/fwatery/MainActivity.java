@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     MeowBottomNavigation bottomNavigation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null);
         transaction.replace(R.id.fragment_container, fragment)
                 .commit();
-
     }
 
 }
