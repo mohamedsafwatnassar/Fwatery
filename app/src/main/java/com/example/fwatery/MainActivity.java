@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottonNav);
 
-        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_email));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_email));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_email));
+        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_bill));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_receipt));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_maintenance));
         bottomNavigation.show(1,true);
 
         bottomNavigation.setOnClickMenuListener(model -> {
