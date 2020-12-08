@@ -38,6 +38,7 @@ public class a3taal extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_a3taal, container, false);
+        getActivity().setTitle("أعطال                                  ");
 
         initView();
         initRecyclerView();

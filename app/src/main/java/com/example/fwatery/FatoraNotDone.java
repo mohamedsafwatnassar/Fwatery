@@ -36,6 +36,7 @@ public class FatoraNotDone extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fatora_not_done, container, false);
+        getActivity().setTitle("فواتير غير مدفوعه                          ");
 
         initView();
 

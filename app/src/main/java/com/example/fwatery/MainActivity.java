@@ -16,13 +16,15 @@ import kotlin.jvm.functions.Function1;
 public class MainActivity extends AppCompatActivity {
 
     MeowBottomNavigation bottomNavigation;
+    Toolbar toolbar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottonNav);
-
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_bill));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_receipt));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_maintenance));

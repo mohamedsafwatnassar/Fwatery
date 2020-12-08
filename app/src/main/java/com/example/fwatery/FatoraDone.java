@@ -32,6 +32,7 @@ public class FatoraDone extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fatora_done, container, false);
 
+        getActivity().setTitle("فواتير مدفوعه                            ");
         initView();
         initRecyclerView();
         return view;
