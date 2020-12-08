@@ -79,10 +79,10 @@ public class FatoraNotDone extends Fragment {
                 dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
                 dialog.setCancelable(false);
                 dialog.show();
-                Button add3otl = dialog.findViewById(R.id.Add_3otll);
+                Button addfatora = dialog.findViewById(R.id.Add_fatora);
                 Button cancel = dialog.findViewById(R.id.cancel);
 
-                add3otl.setOnClickListener(new View.OnClickListener() {
+                addfatora.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
