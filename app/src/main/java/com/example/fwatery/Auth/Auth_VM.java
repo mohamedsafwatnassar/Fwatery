@@ -1,4 +1,4 @@
-package com.example.fwatery;
+package com.example.fwatery.Auth;
 
 import android.util.Patterns;
 

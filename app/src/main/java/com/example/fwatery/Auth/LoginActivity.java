@@ -1,14 +1,16 @@
-package com.example.fwatery;
+package com.example.fwatery.Auth;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.fwatery.BaseActivity;
+import com.example.fwatery.MainActivity;
+import com.example.fwatery.R;
 import com.example.fwatery.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends BaseActivity {

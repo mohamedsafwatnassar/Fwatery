@@ -1,10 +1,13 @@
-package com.example.fwatery;
+package com.example.fwatery.Auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.fwatery.MainActivity;
+import com.example.fwatery.R;
 
 public class SplashActivity extends AppCompatActivity {
 
