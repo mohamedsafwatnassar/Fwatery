@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fwatery.Models.A3tal;
+import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -116,6 +117,30 @@ public class a3taal extends Fragment implements View.OnClickListener {
         recyclerViewA3tal.setHasFixedSize(true);
         recyclerViewA3tal.setAdapter(a3taalAdapter);
         recyclerViewA3tal.setLayoutManager(layoutManager);
+
+        a3taalAdapter.setOnItem3tlOnClickListener(new A3taalAdapter.onItem3tlOnClickListener() {
+            @Override
+            public void onClick(int postion, A3tal a3tal) {
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.a3tal_done_onclick);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                //dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog.setCancelable(false);
+                dialog.show();
+
+                Button cancel = dialog.findViewById(R.id.cancel);
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
 
     }
 }

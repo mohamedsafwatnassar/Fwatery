@@ -45,8 +45,30 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         String date = simpleDateFormat.format(calendar.getTime());
         holder.date.setText(date);
+
+        if (onItem3tlOnClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItem3tlOnClickListener.onClick(position, a3taal);
+                }
+            });
+        }
     }
 
+    onItem3tlOnClickListener onItem3tlOnClickListener;
+
+    public A3taalAdapter.onItem3tlOnClickListener getOnItem3tlOnClickListener() {
+        return onItem3tlOnClickListener;
+    }
+
+    public void setOnItem3tlOnClickListener(A3taalAdapter.onItem3tlOnClickListener onItem3tlOnClickListener) {
+        this.onItem3tlOnClickListener = onItem3tlOnClickListener;
+    }
+
+    public interface onItem3tlOnClickListener {
+        public void onClick(int postion, A3tal a3tal);
+    }
     @Override
     public int getItemCount() {
         if(a3talList ==null)

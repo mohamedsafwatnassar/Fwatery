@@ -9,13 +9,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.fwatery.Database.Daos.UserDao;
 import com.example.fwatery.Models.User;
-import com.google.android.gms.common.util.DataUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -30,7 +23,7 @@ public class Auth_VM extends ViewModel {
     public MutableLiveData<Boolean> success = new MutableLiveData<>(null);
     public MutableLiveData<String> Failed = new MutableLiveData<>(null);
 
-    public void LoginCLick(){
+    public void LoginCLick() {
         progress.setValue(true);
         if (validate()) {
             Login();
@@ -41,37 +34,34 @@ public class Auth_VM extends ViewModel {
         }*/
     }
 
-
     private void Login() {
-
 
     }
 
     private void getUser() {
         final User user = new User();
+        UserDao.getAllUser(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-     UserDao.getAllUser(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot snapshot) {
+            }
 
-         }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-         @Override
-         public void onCancelled(@NonNull DatabaseError error) {
-
-         }
-     });
+            }
+        });
     }
 
-    public Boolean validate(){
+    public Boolean validate() {
         boolean isValid = true;
-        if (email.get().trim().isEmpty()){
+        if (email.get().trim().isEmpty()) {
             emailError.setValue("required");
             isValid = false;
-        }else if (!ValidEmail()){
+        } else if (!ValidEmail()) {
             emailError.setValue("Please enter a valid email");
             isValid = false;
-        }else {
+        } else {
             emailError.setValue(null);
         }
 
