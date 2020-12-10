@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.fwatery.Auth_VM;
 import com.example.fwatery.BaseActivity;
 import com.example.fwatery.MainActivity;
 import com.example.fwatery.R;
@@ -31,6 +32,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void subscribeToLiveData() {
+
         authVm.emailError.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {

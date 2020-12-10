@@ -6,7 +6,7 @@
     <data>
         <variable
             name="Lvm"
-            type="com.example.fwatery.Auth.Auth_VM" />
+            type="com.example.fwatery.Auth_VM" />
 
     </data>
 

@@ -8,8 +8,9 @@ public class RealtimeDatabase {
     private static final String User_Ref = "Users";
 
     private static FirebaseDatabase database;
-    public static FirebaseDatabase getInstance(){
-        if (database == null){
+
+    public static FirebaseDatabase getInstance() {
+        if (database == null) {
             database = FirebaseDatabase.getInstance();
         }
         return database;

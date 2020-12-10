@@ -1,4 +1,4 @@
-package com.example.fwatery.Auth;
+package com.example.fwatery;
 
 import android.util.Patterns;
 
@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class Auth_VM extends ViewModel {
 
@@ -38,43 +41,26 @@ public class Auth_VM extends ViewModel {
         }*/
     }
 
-    FirebaseAuth mAuth;
+
     private void Login() {
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(email.get(), password.get())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            //saveUser(mAuth.getCurrentUser().getUid());
-                            success.setValue(true);
-                            progress.setValue(false);
-                        }
-                        else {
-                            success.setValue(false);
-                            progress.setValue(false);
-                        }
-                    }
-                });
+
+
     }
 
-    private void AddNewUser() {
+    private void getUser() {
         final User user = new User();
-        user.setEmail(email.get());
-        user.setId(mAuth.getCurrentUser().getUid());
-        UserDao.addUser(user, new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                success.setValue(true);
-                progress.setValue(false);
-            }
-        }, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Failed.setValue(e.getLocalizedMessage());
-                progress.setValue(false);
-            }
-        });
+
+     UserDao.getAllUser(new ValueEventListener() {
+         @Override
+         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+         }
+
+         @Override
+         public void onCancelled(@NonNull DatabaseError error) {
+
+         }
+     });
     }
 
     public Boolean validate(){
