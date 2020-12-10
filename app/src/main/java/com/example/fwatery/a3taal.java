@@ -23,8 +23,6 @@ import java.util.List;
 public class a3taal extends Fragment implements View.OnClickListener {
 
     TabLayout tabLayout;
-    TabItem repairDone;
-    TabItem repairNotDone;
     FloatingActionButton fab;
     RecyclerView recyclerViewA3tal;
     ViewPager viewPager;
@@ -49,25 +47,13 @@ public class a3taal extends Fragment implements View.OnClickListener {
         initView();
         initRecyclerView();
 
-        adapterViewPager = new AdapterViewPager(getFragmentManager(), tabLayout.getTabCount());
+        adapterViewPager = new AdapterViewPager(getFragmentManager());
+
+        adapterViewPager.addFragment(new FatoraDone(), "تم الإصلاح");
+        adapterViewPager.addFragment(new a3taal(), "لم يتم الإصلاح");
 
         viewPager.setAdapter(adapterViewPager);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
     }
@@ -78,12 +64,9 @@ public class a3taal extends Fragment implements View.OnClickListener {
         fab = view.findViewById(R.id.add_3otl);
         fab.setOnClickListener(this);
         tabLayout = view.findViewById(R.id.tabLayout);
-        repairDone = view.findViewById(R.id.repairDone);
-        repairNotDone = view.findViewById(R.id.repairNotDone);
     }
 
     Dialog dialog;
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.add_3otl) {

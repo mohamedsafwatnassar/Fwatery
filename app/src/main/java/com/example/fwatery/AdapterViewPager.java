@@ -13,42 +13,34 @@ import java.util.List;
 
 public class AdapterViewPager extends FragmentPagerAdapter {
 
-    /*Context context;
+    Context context;
     List<Fragment> fragmentList = new ArrayList<>();
     List<String> stringList = new ArrayList<>();
 
     public void addFragment(Fragment fragment, String title){
         fragmentList.add(fragment);
         stringList.add(title);
-    }*/
+    }
 
     int numOfTabs;
-    public AdapterViewPager(@NonNull FragmentManager fm, int numOfTabs) {
+    public AdapterViewPager(@NonNull FragmentManager fm) {
         super(fm);
-        this.numOfTabs = numOfTabs;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new a3taal();
-            case 1:
-                return new a3taal();
-            default:
-                return null;
-        }
+        return fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return fragmentList.size();
     }
 
-    /*@Nullable
+    @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         return stringList.get(position);
-    }*/
+    }
 }
