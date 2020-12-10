@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.hawk.Hawk;
 
 public class Auth_VM extends ViewModel {
 
@@ -28,7 +29,9 @@ public class Auth_VM extends ViewModel {
     public MutableLiveData<String> passwordError = new MutableLiveData<>(null);
     public MutableLiveData<Boolean> progress = new MutableLiveData<>(null);
     public MutableLiveData<Boolean> success = new MutableLiveData<>(null);
-    public MutableLiveData<String> Failed = new MutableLiveData<>(null);
+
+
+
 
     public void LoginCLick(){
         progress.setValue(true);
@@ -43,16 +46,28 @@ public class Auth_VM extends ViewModel {
 
 
     private void Login() {
-
-
+        getUser();
     }
-
+     User user ;
     private void getUser() {
-        final User user = new User();
+        user = new User();
 
      UserDao.getAllUser(new ValueEventListener() {
          @Override
          public void onDataChange(@NonNull DataSnapshot snapshot) {
+             for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                 user = snapshot1.getValue(User.class);
+                 if(user.isState()){
+                     Hawk.put("User",user.isState());
+                     success.setValue(true);
+                     break;
+                 }
+                 else {
+                     Hawk.put("User",user.isState());
+                     success.setValue(true);
+                     break;
+                 }
+             }
 
          }
 
@@ -61,6 +76,7 @@ public class Auth_VM extends ViewModel {
 
          }
      });
+
     }
 
     public Boolean validate(){
@@ -89,4 +105,8 @@ public class Auth_VM extends ViewModel {
             return true;
         return false;
     }
+
+
+
+
 }

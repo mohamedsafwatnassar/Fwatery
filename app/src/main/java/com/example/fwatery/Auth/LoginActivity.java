@@ -33,6 +33,7 @@ public class LoginActivity extends BaseActivity {
 
     private void subscribeToLiveData() {
 
+
         authVm.emailError.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -67,13 +68,7 @@ public class LoginActivity extends BaseActivity {
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean != null && aBoolean) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                    Log.e("x",loginBinding.Lemail.getEditText().getText().toString());
-                    Log.e("x",loginBinding.Lpassword.getEditText().getText().toString());
-                }else if (aBoolean != null && !aBoolean) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    LoginActivity.this.startActivity(intent);
-                    finish();
+
                 }
 
             }
