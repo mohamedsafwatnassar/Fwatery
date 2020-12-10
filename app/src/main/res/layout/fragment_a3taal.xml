@@ -26,14 +26,16 @@
             android:layout_marginBottom="5dp">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/repairDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="تم الصليح" />
+                android:text="تم الإصلاح" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/repairNotDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="لم يتم" />
+                android:text="لم يتم الإصلاح" />
         </com.google.android.material.tabs.TabLayout>
 
 

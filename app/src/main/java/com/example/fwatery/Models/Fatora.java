@@ -12,6 +12,7 @@ public class Fatora {
     Boolean State ;
 
     public Fatora() {
+        Note ="  ";
     }
 
     public Fatora(String name, String phone, float price) {

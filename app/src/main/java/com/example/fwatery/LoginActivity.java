@@ -4,6 +4,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,15 +58,20 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        authVm.x.observe(this, new Observer<String>() {
+        authVm.success.observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(String s) {
-                if (s == "x"){
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean != null && aBoolean) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                     Log.e("x",loginBinding.Lemail.getEditText().getText().toString());
                     Log.e("x",loginBinding.Lpassword.getEditText().getText().toString());
+                }else if (aBoolean != null && !aBoolean) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    LoginActivity.this.startActivity(intent);
+                    finish();
                 }
+
             }
         });
 

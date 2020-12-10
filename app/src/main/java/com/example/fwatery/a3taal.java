@@ -13,17 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fwatery.Models.A3tal;
-import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class a3taal extends Fragment implements View.OnClickListener {
 
+    TabLayout tabLayout;
+    TabItem repairDone;
+    TabItem repairNotDone;
     FloatingActionButton fab;
     RecyclerView recyclerViewA3tal;
     ViewPager viewPager;
+    AdapterViewPager adapterViewPager;
 
     A3taalAdapter a3taalAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -33,6 +38,7 @@ public class a3taal extends Fragment implements View.OnClickListener {
     }
 
     View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +48,27 @@ public class a3taal extends Fragment implements View.OnClickListener {
 
         initView();
         initRecyclerView();
+
+        adapterViewPager = new AdapterViewPager(getFragmentManager(), tabLayout.getTabCount());
+
+        viewPager.setAdapter(adapterViewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
         return view;
     }
 
@@ -50,12 +77,16 @@ public class a3taal extends Fragment implements View.OnClickListener {
         viewPager = view.findViewById(R.id.viewPager);
         fab = view.findViewById(R.id.add_3otl);
         fab.setOnClickListener(this);
+        tabLayout = view.findViewById(R.id.tabLayout);
+        repairDone = view.findViewById(R.id.repairDone);
+        repairNotDone = view.findViewById(R.id.repairNotDone);
     }
 
     Dialog dialog;
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.add_3otl){
+        if (v.getId() == R.id.add_3otl) {
             dialog = new Dialog(getActivity());
             dialog.setContentView(R.layout.add_a3tal);
 
@@ -86,17 +117,18 @@ public class a3taal extends Fragment implements View.OnClickListener {
     }
 
     List<A3tal> a3talList;
+
     private void initRecyclerView() {
         a3talList = new ArrayList<>();
-        a3talList.add(new A3tal("mohamed safwat","01117796570","55"));
-        a3talList.add(new A3tal("Ali","01150500021","street-5"));
-        a3talList.add(new A3tal("Seif","01117796570","street-44"));
-        a3talList.add(new A3tal("Omar","01117796570","street-33"));
-        a3talList.add(new A3tal("Nassar","01117796570","street-543"));
-        a3talList.add(new A3tal("Hamada","01117796570","street-18"));
-        a3talList.add(new A3tal(" sssss","01117796570","street-1"));
+        a3talList.add(new A3tal("mohamed safwat", "01117796570", "55"));
+        a3talList.add(new A3tal("Ali", "01150500021", "street-5"));
+        a3talList.add(new A3tal("Seif", "01117796570", "street-44"));
+        a3talList.add(new A3tal("Omar", "01117796570", "street-33"));
+        a3talList.add(new A3tal("Nassar", "01117796570", "street-543"));
+        a3talList.add(new A3tal("Hamada", "01117796570", "street-18"));
+        a3talList.add(new A3tal(" sssss", "01117796570", "street-1"));
 
-        a3taalAdapter = new A3taalAdapter(getActivity(),a3talList);
+        a3taalAdapter = new A3taalAdapter(getActivity(), a3talList);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewA3tal.setHasFixedSize(true);
         recyclerViewA3tal.setAdapter(a3taalAdapter);

@@ -1,9 +1,11 @@
 package com.example.fwatery;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +44,7 @@ public class FatoraDone extends Fragment {
         recyclerViewFatoraDone = view.findViewById(R.id.recyclerView_fatora_Done);
     }
 
+    Dialog dialog;
     List<Fatora> fatoraList;
     private void initRecyclerView() {
         fatoraList = new ArrayList<>();
@@ -58,5 +61,29 @@ public class FatoraDone extends Fragment {
         recyclerViewFatoraDone.setHasFixedSize(true);
         recyclerViewFatoraDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraDone.setLayoutManager(layoutManager);
+
+        fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
+            @Override
+            public void onClick(int position, Fatora fatora) {
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.fatora_done_onclick);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                //dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog.setCancelable(false);
+                dialog.show();
+
+                Button cancel = dialog.findViewById(R.id.cancel);
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
     }
 }

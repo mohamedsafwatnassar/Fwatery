@@ -10,6 +10,7 @@ public class A3tal {
     Boolean State ;
 
     public A3tal() {
+        Note ="  ";
     }
 
     public A3tal(String name, String phone, String address) {

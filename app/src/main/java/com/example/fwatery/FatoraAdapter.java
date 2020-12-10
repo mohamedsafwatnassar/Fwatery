@@ -44,6 +44,15 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         String date = simpleDateFormat.format(calendar.getTime());
         holder.date.setText(date);
+
+        if (onFatoraClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onFatoraClickListener.onClick(position, fatora);
+                }
+            });
+        }
     }
 
     @Override
@@ -51,6 +60,16 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         if(fatoraList ==null)
             return 0;
         return fatoraList.size();
+    }
+
+    onFatoraClickListener onFatoraClickListener;
+
+    public void setOnFatoraClickListener(FatoraAdapter.onFatoraClickListener onFatoraClickListener) {
+        this.onFatoraClickListener = onFatoraClickListener;
+    }
+
+    public interface onFatoraClickListener {
+        public void onClick(int position, Fatora fatora);
     }
 
     public class FatoraViewHolder extends RecyclerView.ViewHolder {
@@ -64,8 +83,6 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
             phone = (TextView) itemView.findViewById(R.id.phone);
             price = (TextView) itemView.findViewById(R.id.price);
             date = (TextView) itemView.findViewById(R.id.date);
-
         }
-
     }
 }
