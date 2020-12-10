@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "563000819156",
+    "firebase_url": "https://fwatery-5c0b5-default-rtdb.firebaseio.com",
+    "project_id": "fwatery-5c0b5",
+    "storage_bucket": "fwatery-5c0b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563000819156:android:d87c4e1169ed6fca2eaa41",
+        "android_client_info": {
+          "package_name": "com.example.fwatery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563000819156-mpl295af21sbon04p6diq4pa6cmfbe59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXxZOEbCuBMKIu5_ntlY4jefEHkfqIkiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563000819156-mpl295af21sbon04p6diq4pa6cmfbe59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
