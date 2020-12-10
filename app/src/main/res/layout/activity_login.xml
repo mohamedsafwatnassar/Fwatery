@@ -6,7 +6,7 @@
     <data>
         <variable
             name="Lvm"
-            type="com.example.fwatery.Auth_VM" />
+            type="com.example.fwatery.Auth.Auth_VM" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".LoginActivity">
+        tools:context=".Auth.LoginActivity">
 
         <include
             android:id="@+id/loginInclude"
