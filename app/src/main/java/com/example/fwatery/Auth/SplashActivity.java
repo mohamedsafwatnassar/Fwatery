@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import com.example.fwatery.MainActivity;
 import com.example.fwatery.R;
+import com.orhanobut.hawk.Hawk;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,9 +20,21 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                    finish();
+                navigate();
             }
         }, 2000);
+
+
+    }
+
+    private void navigate() {
+        if(Hawk.get("User")!=null){
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+        }
+        else {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            finish();
+        }
     }
 }

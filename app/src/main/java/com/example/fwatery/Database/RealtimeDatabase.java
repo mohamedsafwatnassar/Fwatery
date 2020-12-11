@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RealtimeDatabase {
 
     private static final String User_Ref = "Users";
+    private static final String FatoraDone_Ref = "Fatorda_Done";
 
     private static FirebaseDatabase database;
 
@@ -18,6 +19,9 @@ public class RealtimeDatabase {
 
     public static DatabaseReference getUserRef(){
         return getInstance().getReference().child(User_Ref);
+    }
+    public static DatabaseReference getFatoraDone(){
+        return getInstance().getReference().child(FatoraDone_Ref);
     }
 
 }

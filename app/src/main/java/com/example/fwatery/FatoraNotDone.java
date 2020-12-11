@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +62,48 @@ public class FatoraNotDone extends Fragment {
         recyclerViewFatoraNotDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraNotDone.setLayoutManager(layoutManager);
 
+
+        fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
+            @Override
+            public void onClick(int position, Fatora fatora) {
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.fatora_notdone_onclick);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                //dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog.setCancelable(false);
+                dialog.show();
+
+                Button cancel = dialog.findViewById(R.id.cancel);
+                Button Daf3 = dialog.findViewById(R.id.Add_fatora);
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Daf3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
     }
 
     private void initView() {
         recyclerViewFatoraNotDone = view.findViewById(R.id.recyclerView_fatora_NotDone);
         fab = view.findViewById(R.id.add_fat);
+
+        if(Hawk.get("User").equals(true)){
+            fab.setVisibility(View.INVISIBLE);
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

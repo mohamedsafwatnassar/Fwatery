@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fwatery.Models.Fatora;
+import com.orhanobut.hawk.Hawk;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,7 +30,15 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
     @NonNull
     @Override
     public FatoraViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fatora, parent,false);
+        View view ;
+        if(Hawk.get("User").equals(false)){
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fatora, parent,false);
+
+        }
+        else {
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_fatora, parent,false);
+
+        }
         return new FatoraViewHolder(view);
     }
 
@@ -39,6 +48,7 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         holder.name.setText(fatora.getName());
         holder.phone.setText(fatora.getPhone());
         holder.price.setText(new StringBuilder("$ ").append(fatora.getPrice()));
+
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
@@ -81,7 +91,7 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
             delete = (ImageView) itemView.findViewById(R.id.delete);
             name = (TextView) itemView.findViewById(R.id.name);
             phone = (TextView) itemView.findViewById(R.id.phone);
-            price = (TextView) itemView.findViewById(R.id.price);
+            price =  itemView.findViewById(R.id.price);
             date = (TextView) itemView.findViewById(R.id.date);
         }
     }
