@@ -69,6 +69,7 @@ public class FatoraNotDone extends Fragment {
         recyclerViewFatoraNotDone.setHasFixedSize(true);
         recyclerViewFatoraNotDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraNotDone.setLayoutManager(layoutManager);
+        vm.getALLFatoraNotDone();
         vm.FatoraNotDone.observe(getActivity(), new Observer<List<Fatora>>() {
             @Override
             public void onChanged(List<Fatora> fatoras) {
