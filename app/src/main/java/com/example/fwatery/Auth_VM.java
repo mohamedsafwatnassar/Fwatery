@@ -31,17 +31,12 @@ public class Auth_VM extends ViewModel {
     public MutableLiveData<Boolean> success = new MutableLiveData<>(null);
 
 
-
-
     public void LoginCLick(){
         progress.setValue(true);
         if (validate()) {
             Login();
         }
-            /*x.setValue("x");
-        }else {
-            progress.setValue(false);
-        }*/
+
     }
 
 
@@ -51,17 +46,17 @@ public class Auth_VM extends ViewModel {
      User user ;
     private void getUser() {
         user = new User();
-
      UserDao.getAllUser(new ValueEventListener() {
          @Override
          public void onDataChange(@NonNull DataSnapshot snapshot) {
              for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                  user = snapshot1.getValue(User.class);
-                 if(user.isState()){
+                 if(user.getEmail().equals(email.get().trim()) && email.get().equals("yousef@gmail.com")){
                      Hawk.put("User",true);
                      success.setValue(true);
                      break;
                  }
+
                  else if (!user.isState()) {
                      Hawk.put("User",false);
                      success.setValue(true);
@@ -76,6 +71,7 @@ public class Auth_VM extends ViewModel {
 
          }
      });
+
 
     }
 

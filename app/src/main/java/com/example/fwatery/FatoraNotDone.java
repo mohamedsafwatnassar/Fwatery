@@ -101,7 +101,7 @@ public class FatoraNotDone extends Fragment {
         recyclerViewFatoraNotDone = view.findViewById(R.id.recyclerView_fatora_NotDone);
         fab = view.findViewById(R.id.add_fat);
 
-        if(Hawk.get("User").equals(true)){
+        if(Hawk.get("User").equals(false)){
             fab.setVisibility(View.INVISIBLE);
         }
 

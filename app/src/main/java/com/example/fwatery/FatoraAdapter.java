@@ -31,13 +31,11 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
     @Override
     public FatoraViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view ;
-        if(Hawk.get("User").equals(false)){
+        if(Hawk.get("User").equals(true)){
              view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fatora, parent,false);
-
         }
         else {
              view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_fatora, parent,false);
-
         }
         return new FatoraViewHolder(view);
     }
