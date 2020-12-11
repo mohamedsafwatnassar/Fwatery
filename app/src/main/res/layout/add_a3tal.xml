@@ -21,7 +21,6 @@
         android:id="@+id/Name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorWhite"
         android:hint=" اسم العميل"
         android:textColor="@color/black"
         android:typeface="serif"
@@ -34,7 +33,6 @@
         android:id="@+id/Phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorWhite"
         android:hint="  رقم الهاتف"
         android:textColor="@color/black"
         android:typeface="serif"
@@ -46,7 +44,6 @@
         android:id="@+id/Address"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorWhite"
         android:hint=" العنوان"
         android:textColor="@color/black"
         android:typeface="serif"
@@ -59,7 +56,6 @@
         android:id="@+id/Note"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorWhite"
         android:hint=" ملاحظات"
         android:textColor="@color/black"
         android:typeface="serif"
@@ -94,7 +90,7 @@
                 android:text="إضافة عطل"
                 android:textAllCaps="false"
                 android:textStyle="bold"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 tools:ignore="NotSibling" />
 
@@ -114,7 +110,7 @@
                 android:text="إغلاق "
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 tools:ignore="NotSibling" />
 

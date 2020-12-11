@@ -106,6 +106,21 @@ public class FatoraDone extends Fragment {
                 dialog.show();
 
                 Button cancel = dialog.findViewById(R.id.cancel);
+                TextView Name = dialog.findViewById(R.id.Name);
+                Name.setText(fatora.getName());
+                TextView Address = dialog.findViewById(R.id.Phone);
+                Address.setText(fatora.getAddress());
+                TextView Phone = dialog.findViewById(R.id.Address);
+                Phone.setText(fatora.getPhone());
+                TextView Price = dialog.findViewById(R.id.Price);
+                Price.setText(Float.toString(fatora.getPrice()));
+                TextView Package = dialog.findViewById(R.id.ExtraPackage);
+                Package.setText(Float.toString(fatora.getExtraPackage()));
+                TextView Note = dialog.findViewById(R.id.Note);
+                Note.setText(fatora.getNote());
+                TextView Date = dialog.findViewById(R.id.Date);
+                Date.setText(fatora.getDate());
+
 
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override

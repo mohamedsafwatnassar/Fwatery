@@ -29,84 +29,222 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/Name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/white"
-        android:typeface="serif"
-        android:textSize="18sp"
-        android:text="Ali ahmed Ali"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/Phone"
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="اســـم العميل : "
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorWhite"
-        android:typeface="serif"
-        android:text="dsa,fmnsa,mfnas,mfas,mdf"
-        android:textSize="18sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
 
-    <TextView
-        android:id="@+id/Address"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="رقم الهاتف : "
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorWhite"
-        android:typeface="serif"
-        android:textSize="18sp"
-        android:text="sadna,msfasd"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
 
-    <TextView
-        android:id="@+id/ExtraPackage"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="العنوان :"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorWhite"
-        android:typeface="serif"
-        android:text="10"
-        android:textSize="18sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
 
-    <TextView
-        android:id="@+id/Price"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ExtraPackage"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="باقة إضافية :"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorWhite"
-        android:typeface="serif"
-        android:textSize="18sp"
-        android:text="50"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
 
-    <TextView
-        android:id="@+id/Note"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Price"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="سعر الباقة :"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:textColor="@color/colorWhite"
-        android:typeface="serif"
-        android:lines="5"
-        android:text="asdjfasjdfhsajkldfjlksadfjk"
-        android:textSize="18sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="40dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:weightSum="3"
+        android:layout_marginLeft="3dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Note"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:textSize="18sp"
+            android:layout_weight="2.9"
+            android:text="Ali ahmed Ali"
+            android:lines="5"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:text="ملاحـظات :"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
 
     <TextView
         android:id="@+id/Date"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorBlack"
         android:typeface="serif"
         android:text="25/10/2020"
         android:textSize="18sp"
@@ -140,7 +278,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             tools:ignore="NotSibling" />
 
     </LinearLayout>
