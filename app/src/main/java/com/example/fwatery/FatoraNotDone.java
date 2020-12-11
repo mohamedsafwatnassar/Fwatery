@@ -98,6 +98,7 @@ public class FatoraNotDone extends Fragment {
                 Button Daf3 = dialog.findViewById(R.id.Add_fatora);
                 TextView Name = dialog.findViewById(R.id.Name);
                 Name.setText(fatora.getName());
+                //
 
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
