@@ -29,6 +29,7 @@ public class Auth_VM extends ViewModel {
     public MutableLiveData<String> passwordError = new MutableLiveData<>(null);
     public MutableLiveData<Boolean> progress = new MutableLiveData<>(null);
     public MutableLiveData<Boolean> success = new MutableLiveData<>(null);
+    public MutableLiveData<Boolean> Failed = new MutableLiveData<>(null);
 
 
     public void LoginCLick(){
@@ -52,15 +53,30 @@ public class Auth_VM extends ViewModel {
              for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                  user = snapshot1.getValue(User.class);
                  if(user.getEmail().equals(email.get().trim()) && email.get().equals("yousef@gmail.com")){
-                     Hawk.put("User",true);
-                     success.setValue(true);
-                     break;
+                     if(password.get().trim().equals(user.getPassword().trim())){
+                         Hawk.put("User",true);
+                         success.setValue(true);
+                         break;
+                     }
+                     else {
+                         Failed.setValue(true);
+                     }
                  }
 
-                 else if (!user.isState()) {
-                     Hawk.put("User",false);
-                     success.setValue(true);
-                     break;
+                 else if (user.getEmail().equals(email.get().trim()) && email.get().equals("Ahmed@gmail.com")) {
+                     if(password.get().trim().equals(user.getPassword().trim())){
+                         Hawk.put("User",false);
+                         success.setValue(true);
+                         break;
+                     }
+                     else {
+                         Failed.setValue(true);
+                     }
+                 }
+
+                else {
+                    Failed.setValue(true);
+                    break;
                  }
              }
 

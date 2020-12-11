@@ -4,6 +4,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +61,23 @@ public class LoginActivity extends BaseActivity {
                     showProgressDialog("Loading...");
                 }else if (aBoolean != null && !aBoolean) {
                     hideProgressDialog();
+                }
+            }
+        });
+
+
+        authVm.Failed.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean!=null){
+                    hideProgressDialog();
+                    showMessage("Email or Password Error", "OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+
+                        }
+                    },true);
                 }
             }
         });
