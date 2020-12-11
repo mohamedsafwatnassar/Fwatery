@@ -51,7 +51,6 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         holder.phone.setText(fatora.getPhone());
         holder.price.setText(new StringBuilder("$ ").append(fatora.getPrice()));
 
-
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
         String date = simpleDateFormat.format(calendar.getTime());

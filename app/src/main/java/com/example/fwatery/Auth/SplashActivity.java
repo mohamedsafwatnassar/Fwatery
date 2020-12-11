@@ -24,11 +24,10 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 2000);
 
-
     }
 
     private void navigate() {
-        if(Hawk.get("User")!=null){
+        if(Hawk.get("User") != null){
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
         }

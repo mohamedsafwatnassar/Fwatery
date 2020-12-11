@@ -19,8 +19,9 @@ import com.example.fwatery.databinding.ActivityLoginBinding;
 public class LoginActivity extends BaseActivity {
 
     Auth_VM authVm;
-
     ActivityLoginBinding loginBinding;
+
+    // oncreate method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +35,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void subscribeToLiveData() {
-
-
         authVm.emailError.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -65,7 +64,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-
         authVm.Failed.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -87,9 +85,8 @@ public class LoginActivity extends BaseActivity {
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean != null && aBoolean) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
+                    finish();
                 }
-
             }
         });
 

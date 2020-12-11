@@ -27,4 +27,23 @@ public class FatoraNotDoneDao {
         DatabaseReference reference = RealtimeDatabase.getFatoraNotDone();
         reference.addValueEventListener(valueEventListener);
     }
+
+    public static void deleteFatoraNotDone(String fatoraId, OnSuccessListener onSuccessListener){
+       RealtimeDatabase.getFatoraNotDone()
+               .child(fatoraId)
+               .removeValue()
+               .addOnSuccessListener(onSuccessListener);
+
+        //DatabaseReference reference = RealtimeDatabase.getFatoraNotDone();
+        //reference.addValueEventListener(valueEventListener);
+    }
+
+    /*
+    public static void deleteMessageByRoomId(Message message, OnCompleteListener<Void> onCompleteListener)  {
+        OnlineDatabase.getMessagesRef()
+                .child(message.getId())
+                .removeValue()
+                .addOnCompleteListener(onCompleteListener);
+    }
+     */
 }

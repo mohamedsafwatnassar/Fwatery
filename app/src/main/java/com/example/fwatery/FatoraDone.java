@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fwatery.Models.Fatora;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FatoraDone extends Fragment {
@@ -27,11 +30,13 @@ public class FatoraDone extends Fragment {
         // Required empty public constructor
     }
 
+    Fatora_Vm vm;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        vm = new ViewModelProvider(getActivity()).get(Fatora_Vm.class);
         view = inflater.inflate(R.layout.fragment_fatora_done, container, false);
 
         getActivity().setTitle("فواتير مدفوعه                            ");
@@ -45,22 +50,23 @@ public class FatoraDone extends Fragment {
     }
 
     Dialog dialog;
-    List<Fatora> fatoraList;
     private void initRecyclerView() {
-        fatoraList = new ArrayList<>();
-        fatoraList.add(new Fatora("mohamed safwat","01117796570",55));
-        fatoraList.add(new Fatora("Ali","01117796570",100));
-        fatoraList.add(new Fatora("Seif","01117796570",400));
-        fatoraList.add(new Fatora("Nassar","01117796570",555));
-        fatoraList.add(new Fatora("Hamada","01117796570",111));
-        fatoraList.add(new Fatora("Omar","01117796570",777));
-        fatoraList.add(new Fatora("Nassar","01117796570",22));
-        fatoraList.add(new Fatora("Nassar","01117796570",999));
-        fatoraAdapter = new FatoraAdapter(getActivity(),fatoraList);
+        fatoraAdapter = new FatoraAdapter(getActivity(),null);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewFatoraDone.setHasFixedSize(true);
         recyclerViewFatoraDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraDone.setLayoutManager(layoutManager);
+
+        vm.getALLFatoraDone();
+        vm.FatoraDone.observe(getActivity(), new Observer<List<Fatora>>() {
+            @Override
+            public void onChanged(List<Fatora> fatoras) {
+                if(fatoras!=null) {
+                    fatoraAdapter.Change(fatoras);
+                    Collections.reverse(fatoras);
+                }
+            }
+        });
 
         fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
             @Override
