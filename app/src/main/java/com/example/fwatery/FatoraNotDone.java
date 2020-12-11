@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -95,7 +96,8 @@ public class FatoraNotDone extends Fragment {
 
                 Button cancel = dialog.findViewById(R.id.cancel);
                 Button Daf3 = dialog.findViewById(R.id.Add_fatora);
-
+                TextView Name = dialog.findViewById(R.id.Name);
+                Name.setText(fatora.getName());
 
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,7 +110,6 @@ public class FatoraNotDone extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
-
                         dialog.dismiss();
                     }
                 });
