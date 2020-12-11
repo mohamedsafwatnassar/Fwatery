@@ -26,6 +26,10 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         this.fatoraList = fatoraList;
         this.context = context;
     }
+    public void Change(List<Fatora> fatoras){
+        fatoraList = fatoras ;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

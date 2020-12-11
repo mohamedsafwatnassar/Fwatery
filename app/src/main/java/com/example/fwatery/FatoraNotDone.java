@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +28,7 @@ public class FatoraNotDone extends Fragment {
     View view ;
     FloatingActionButton fab;
 
+    Fatora_Vm vm;
     FatoraAdapter fatoraAdapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -36,7 +40,11 @@ public class FatoraNotDone extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        vm = new ViewModelProvider(getActivity()).get(Fatora_Vm.class);
+
         view = inflater.inflate(R.layout.fragment_fatora_not_done, container, false);
+
+
         getActivity().setTitle("فواتير غير مدفوعه                          ");
 
         initView();
@@ -45,22 +53,30 @@ public class FatoraNotDone extends Fragment {
         return view;
     }
 
-    List<Fatora> fatoraList;
+//    List<Fatora> fatoraList;
     private void initRecyclerView() {
-        fatoraList = new ArrayList<>();
-        fatoraList.add(new Fatora("mohamed safwat","01150500021",55));
-        fatoraList.add(new Fatora("Ali","01150500021",100));
-        fatoraList.add(new Fatora("Seif","01150500021",400));
-        fatoraList.add(new Fatora("Nassar","01150500021",999));
-        fatoraList.add(new Fatora("Nassar","01150500021",999));
-        fatoraList.add(new Fatora("Nassar","01150500021",999));
-        fatoraList.add(new Fatora("Nassar","01150500021",999));
-        fatoraList.add(new Fatora("Nassar","01150500021",999));
-        fatoraAdapter = new FatoraAdapter(getActivity(),fatoraList);
+//        fatoraList = new ArrayList<>();
+//        fatoraList.add(new Fatora("mohamed safwat","01150500021",55));
+//        fatoraList.add(new Fatora("Ali","01150500021",100));
+//        fatoraList.add(new Fatora("Seif","01150500021",400));
+//        fatoraList.add(new Fatora("Nassar","01150500021",999));
+//        fatoraList.add(new Fatora("Nassar","01150500021",999));
+//        fatoraList.add(new Fatora("Nassar","01150500021",999));
+//        fatoraList.add(new Fatora("Nassar","01150500021",999));
+//        fatoraList.add(new Fatora("Nassar","01150500021",999));
+        fatoraAdapter = new FatoraAdapter(getActivity(),null);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewFatoraNotDone.setHasFixedSize(true);
         recyclerViewFatoraNotDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraNotDone.setLayoutManager(layoutManager);
+        vm.FatoraNotDone.observe(getActivity(), new Observer<List<Fatora>>() {
+            @Override
+            public void onChanged(List<Fatora> fatoras) {
+                if(fatoras!=null)
+              fatoraAdapter.Change(fatoras);
+
+            }
+        });
 
 
         fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
@@ -79,6 +95,7 @@ public class FatoraNotDone extends Fragment {
                 Button cancel = dialog.findViewById(R.id.cancel);
                 Button Daf3 = dialog.findViewById(R.id.Add_fatora);
 
+
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -88,7 +105,9 @@ public class FatoraNotDone extends Fragment {
 
                 Daf3.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View v)
+                    {
+
                         dialog.dismiss();
                     }
                 });
@@ -120,10 +139,25 @@ public class FatoraNotDone extends Fragment {
                 dialog.show();
                 Button addfatora = dialog.findViewById(R.id.Add_fatora);
                 Button cancel = dialog.findViewById(R.id.cancel);
+                EditText Name = dialog.findViewById(R.id.Name);
+                EditText Address = dialog.findViewById(R.id.Phone);
+                EditText Phone = dialog.findViewById(R.id.Address);
+                EditText Price = dialog.findViewById(R.id.Price);
+                EditText Package = dialog.findViewById(R.id.ExtraPackage);
+                EditText Note = dialog.findViewById(R.id.Note);
+
 
                 addfatora.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View v)
+                    { Fatora fatora1 = new Fatora();
+                        fatora1.setName(Name.getText().toString());
+                        fatora1.setAddress(Address.getText().toString());
+                        fatora1.setNote(Note.getText().toString());
+                        fatora1.setPhone(Phone.getText().toString());
+                        fatora1.setPrice(Integer.parseInt(Price.getText().toString()));
+                        fatora1.setExtraPackage(Integer.parseInt(Package.getText().toString()));
+                        vm.AddFatoraNotDone(fatora1);
                         dialog.dismiss();
                     }
                 });
