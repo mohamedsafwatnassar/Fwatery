@@ -30,6 +30,9 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
         fatoraList = fatoras ;
         notifyDataSetChanged();
     }
+    public void Delete(int pos){
+        notifyItemRemoved(pos);
+    }
 
     @NonNull
     @Override
@@ -64,6 +67,14 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
                 }
             });
         }
+        if(onDeleteClickListner!=null){
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                onDeleteClickListner.onClick(position,fatora);
+                }
+            });
+        }
     }
 
     @Override
@@ -74,12 +85,20 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
     }
 
     onFatoraClickListener onFatoraClickListener;
+    onDeleteClickListner onDeleteClickListner;
+
+    public void setOnDeleteClickListner(FatoraAdapter.onDeleteClickListner onDeleteClickListner) {
+        this.onDeleteClickListner = onDeleteClickListner;
+    }
 
     public void setOnFatoraClickListener(FatoraAdapter.onFatoraClickListener onFatoraClickListener) {
         this.onFatoraClickListener = onFatoraClickListener;
     }
 
     public interface onFatoraClickListener {
+        public void onClick(int position, Fatora fatora);
+    }
+    public interface onDeleteClickListner {
         public void onClick(int position, Fatora fatora);
     }
 

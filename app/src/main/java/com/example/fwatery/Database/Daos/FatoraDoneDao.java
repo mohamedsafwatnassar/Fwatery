@@ -28,4 +28,14 @@ public class FatoraDoneDao {
         DatabaseReference reference = RealtimeDatabase.getFatoraDone();
         reference.addValueEventListener(valueEventListener);
     }
+
+    public static void deleteFatoraDone(String fatoraId, OnSuccessListener onSuccessListener){
+        RealtimeDatabase.getFatoraDone()
+                .child(fatoraId)
+                .removeValue()
+                .addOnSuccessListener(onSuccessListener);
+
+        //DatabaseReference reference = RealtimeDatabase.getFatoraNotDone();
+        //reference.addValueEventListener(valueEventListener);
+    }
 }

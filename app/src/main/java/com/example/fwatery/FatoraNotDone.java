@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fwatery.Base.BaseFragment;
 import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
@@ -23,12 +25,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FatoraNotDone extends Fragment {
+public class FatoraNotDone extends BaseFragment {
 
     RecyclerView recyclerViewFatoraNotDone;
     Dialog dialog;
     View view ;
     FloatingActionButton fab;
+
+    TextView Total ;
+    TextView numList ;
 
     Fatora_Vm vm;
     FatoraAdapter fatoraAdapter;
@@ -62,16 +67,37 @@ public class FatoraNotDone extends Fragment {
         recyclerViewFatoraNotDone.setHasFixedSize(true);
         recyclerViewFatoraNotDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraNotDone.setLayoutManager(layoutManager);
-        vm.getALLFatoraNotDone();
+
         vm.FatoraNotDone.observe(getActivity(), new Observer<List<Fatora>>() {
             @Override
             public void onChanged(List<Fatora> fatoras) {
                 if(fatoras != null){
                     fatoraAdapter.Change(fatoras);
-                    Collections.reverse(fatoras);
+                    numList.setText(""+fatoras.size());
+
                 }
             }
         });
+
+        vm.Progress.observe(getActivity(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean!=null && aBoolean){
+                    showProgressDialog("Loading...");
+                }
+                else hideProgressDialog();
+            }
+        });
+
+        fatoraAdapter.setOnDeleteClickListner(new FatoraAdapter.onDeleteClickListner() {
+            @Override
+            public void onClick(int position, Fatora fatora) {
+                vm.DeleteFatoraNotDone(fatora);
+                fatoraAdapter.Delete(position);
+                Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
         fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
@@ -96,9 +122,9 @@ public class FatoraNotDone extends Fragment {
                 TextView Phone = dialog.findViewById(R.id.Address);
                 Phone.setText(fatora.getPhone());
                 TextView Price = dialog.findViewById(R.id.Price);
-                //Price.setText(fatora.getPrice());
+                Price.setText(Float.toString(fatora.getPrice()));
                 TextView Package = dialog.findViewById(R.id.ExtraPackage);
-                //Package.setText(Integer.parseInt(String.valueOf(fatora.getExtraPackage())));
+                Package.setText(Float.toString(fatora.getExtraPackage()));
                 TextView Note = dialog.findViewById(R.id.Note);
                 Note.setText(fatora.getNote());
                 TextView Date = dialog.findViewById(R.id.Date);
@@ -126,10 +152,21 @@ public class FatoraNotDone extends Fragment {
     private void initView() {
         recyclerViewFatoraNotDone = view.findViewById(R.id.recyclerView_fatora_NotDone);
         fab = view.findViewById(R.id.add_fat);
+        Total = view.findViewById(R.id.Total);
+        numList = view.findViewById(R.id.numList);
+
 
         if(Hawk.get("User").equals(false)){
             fab.setVisibility(View.INVISIBLE);
         }
+
+         vm.TotalNot.observe(getActivity(), new Observer<Double>() {
+            @Override
+            public void onChanged(Double aDouble) {
+                Total.setText(""+aDouble+" $");
+            }
+        });
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
