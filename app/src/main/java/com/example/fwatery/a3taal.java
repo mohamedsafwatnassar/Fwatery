@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,35 +19,36 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fwatery.Base.BaseFragment;
 import com.example.fwatery.Models.A3tal;
-import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.fwatery.MainActivity.bottomNavigation;
 
 public class a3taal extends BaseFragment {
 
     TabLayout tabLayout;
 
-    RecyclerView recyclerViewA3tal;
-    A3taalAdapter a3taalAdapter;
-    RecyclerView.LayoutManager layoutManager;
+    A3tal_VM vm;
 
-    A3tal_VM vm ;
-
-    FloatingActionButton fab ;
-
-
-    Dialog dialog;
+    ViewPager viewPager;
+    AdapterViewPager adapterViewPager;
 
     View view;
+    TabItem repairDoneTab;
+    TabItem repairNotDoneTab;
 
     public a3taal() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bottomNavigation.show(3,false);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,149 +59,44 @@ public class a3taal extends BaseFragment {
         getActivity().setTitle("أعطال                                  ");
 
         initView();
-        initRecyclerView();
-
-        tabLayout.newTab().setText("تم التصليح");
-        tabLayout.newTab().setText("لم يتم التصليح");
 
         return view;
     }
 
 
-
     private void initView() {
-        recyclerViewA3tal = view.findViewById(R.id.a3tal_Recycler);
-        fab = view.findViewById(R.id.add_3otl);
         tabLayout = view.findViewById(R.id.tabLayout);
+        repairDoneTab = view.findViewById(R.id.repairDoneTab);
+        repairNotDoneTab = view.findViewById(R.id.repairNotDoneTab);
+        viewPager = view.findViewById(R.id.viewPager);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        adapterViewPager = new AdapterViewPager(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapterViewPager);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.add_a3tal);
-
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                //dialog.getWindow().setGravity(Gravity.CENTER);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-                dialog.setCancelable(false);
-                dialog.show();
-                Button add3otl = dialog.findViewById(R.id.Add_3otll);
-                Button cancel = dialog.findViewById(R.id.cancel);
-                EditText Name = dialog.findViewById(R.id.Name);
-                EditText Address = dialog.findViewById(R.id.Phone);
-                EditText Phone = dialog.findViewById(R.id.Address);
-                EditText Note = dialog.findViewById(R.id.Note);
-
-                add3otl.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        A3tal a3tal = new A3tal();
-                        a3tal.setName(Name.getText().toString());
-                        a3tal.setAddress(Address.getText().toString());
-                        a3tal.setNote(Note.getText().toString());
-                        a3tal.setPhone(Phone.getText().toString());
-                        vm.AddA3talNotDone(a3tal);
-                        dialog.dismiss();
-                    }
-                });
-
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-            }
-        });
-
-
-    }
-
-
-
-
-
-    private void initRecyclerView() {
-
-
-        a3taalAdapter = new A3taalAdapter(getActivity(), null);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerViewA3tal.setHasFixedSize(true);
-        recyclerViewA3tal.setAdapter(a3taalAdapter);
-        recyclerViewA3tal.setLayoutManager(layoutManager);
-
-
-        vm.A3talNotDone.observe(getActivity(), new Observer<List<A3tal>>() {
-            @Override
-            public void onChanged(List<A3tal> a3tals) {
-                if(a3tals != null){
-                    a3taalAdapter.Change(a3tals);
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 0 ){
+                    adapterViewPager.notifyDataSetChanged();
+                }else if (tab.getPosition() == 1){
+                    adapterViewPager.notifyDataSetChanged();
                 }
             }
-        });
 
-
-        vm.Progress.observe(getActivity(), new Observer<Boolean>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean!=null && aBoolean){
-                    showProgressDialog("Loading...");
-                }
-                else hideProgressDialog();
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
-        a3taalAdapter.setOnItem3tlOnClickListener(new A3taalAdapter.onItem3tlOnClickListener() {
-            @Override
-            public void onClick(int postion, A3tal a3tal) {
-                dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.a3tal_notdone_onclick);
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-                //dialog.getWindow().setGravity(Gravity.CENTER);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-                dialog.setCancelable(false);
-                dialog.show();
-
-                Button cancel = dialog.findViewById(R.id.cancel);
-                Button Done_tasle7 = dialog.findViewById(R.id.Done_tasle7);
-                TextView Name = dialog.findViewById(R.id.Name);
-                Name.setText(a3tal.getName());
-                TextView Address = dialog.findViewById(R.id.Phone);
-                Address.setText(a3tal.getAddress());
-                TextView Phone = dialog.findViewById(R.id.Address);
-                Phone.setText(a3tal.getPhone());
-                TextView Note = dialog.findViewById(R.id.Note);
-                Note.setText(a3tal.getNote());
-                TextView Date = dialog.findViewById(R.id.Date);
-                Date.setText(a3tal.getDate());
-
-                Done_tasle7.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        vm.tmtsle7(a3tal);
-                        dialog.dismiss();
-                    }
-                });
-
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-            }
-
-        });
-
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
-
-
-
 
 }

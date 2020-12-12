@@ -15,7 +15,7 @@ import kotlin.jvm.functions.Function1;
 
 public class MainActivity extends AppCompatActivity {
 
-    MeowBottomNavigation bottomNavigation;
+    public static MeowBottomNavigation bottomNavigation;
     Toolbar toolbar ;
 
     @Override
@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null);
         transaction.replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        super.onBackPressed();
+        goToFragment(new FatoraNotDone());
     }
 
 }

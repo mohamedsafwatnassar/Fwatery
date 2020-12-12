@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +21,8 @@ import com.example.fwatery.Models.Fatora;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.example.fwatery.MainActivity.bottomNavigation;
 
 public class FatoraDone extends Fragment {
 
@@ -34,6 +37,12 @@ public class FatoraDone extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bottomNavigation.show(2,false);
+    }
+
     Fatora_Vm vm;
     View view;
     @Override
@@ -42,6 +51,7 @@ public class FatoraDone extends Fragment {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(Fatora_Vm.class);
         view = inflater.inflate(R.layout.fragment_fatora_done, container, false);
+
 
         getActivity().setTitle("فواتير مدفوعه                            ");
         initView();

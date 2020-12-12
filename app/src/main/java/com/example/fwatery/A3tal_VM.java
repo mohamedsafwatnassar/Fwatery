@@ -28,17 +28,15 @@ public class A3tal_VM extends AndroidViewModel {
     public MutableLiveData<List<A3tal>> A3talNotDone = new MutableLiveData<>(null);
     public MutableLiveData<List<A3tal>> A3talDone = new MutableLiveData<>(null);
 
-    public MutableLiveData<Boolean> Progress = new MutableLiveData<>(null);
 
 
     public A3tal_VM(@NonNull Application application) {
         super(application);
         getALLA3talNotDone();
-        getALLFatoraDone();
+        getALLA3taDone();
     }
 
     public void AddA3talNotDone(A3tal a3tal){
-        Progress.setValue(true);
         A3talNotDoneDao.Add3otlNotDone(a3tal, new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -58,7 +56,6 @@ public class A3tal_VM extends AndroidViewModel {
     A3tal a3taalNotDone;
 
     public List<A3tal> getALLA3talNotDone(){
-        Progress.setValue(true);
 
         A3talNotDoneDao.getAlla3talNotDone(new ValueEventListener() {
             @Override
@@ -72,12 +69,11 @@ public class A3tal_VM extends AndroidViewModel {
                 }
                 Collections.reverse(NotDoneList);
                 A3talNotDone.setValue(NotDoneList);
-                Progress.setValue(false);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Progress.setValue(false);
+
             }
         });
         return NotDoneList;
@@ -87,9 +83,9 @@ public class A3tal_VM extends AndroidViewModel {
 
     List<A3tal> A3talDoneList;
     A3tal a3talDone;
-    public List<A3tal> getALLFatoraDone(){
+    public List<A3tal> getALLA3taDone(){
 
-        FatoraDoneDao.getAllFatoraDone(new ValueEventListener() {
+        A3talDoneDao.getAlla3talDone(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 a3talDone = new A3tal();
@@ -98,7 +94,6 @@ public class A3tal_VM extends AndroidViewModel {
                     a3talDone = snapshot1.getValue(A3tal.class);
                     A3talDoneList.add(a3talDone);
                 }
-                Progress.setValue(false);
                 Collections.reverse(A3talDoneList);
                 A3talDone.setValue(A3talDoneList);
 
@@ -134,24 +129,21 @@ public class A3tal_VM extends AndroidViewModel {
     }
 
     public void Delete3otlNotDone(A3tal a3tal){
-        Progress.setValue(true);
+
         A3talNotDoneDao.delete3otlNotDone(a3tal.getId(), new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
                 success.setValue(true);
-                Progress.setValue(false);
             }
         });
 
     }
 
     public void Delete3otlDone(A3tal a3tal){
-        Progress.setValue(true);
         A3talDoneDao.delete3otlDone(a3tal.getId(), new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
                 success.setValue(true);
-                Progress.setValue(false);
             }
         });
 

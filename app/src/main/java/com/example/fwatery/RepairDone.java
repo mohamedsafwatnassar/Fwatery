@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -21,9 +25,9 @@ import java.util.List;
 
 public class RepairDone extends Fragment implements View.OnClickListener {
 
-
     RecyclerView recyclerViewA3tal;
 
+    A3tal_VM vm;
     A3taalAdapter a3taalAdapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -32,24 +36,22 @@ public class RepairDone extends Fragment implements View.OnClickListener {
     }
 
     View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
         view = inflater.inflate(R.layout.repair_done, container, false);
         getActivity().setTitle("أعطال                                  ");
 
         initView();
         initRecyclerView();
 
-
         return view;
     }
 
     private void initView() {
         recyclerViewA3tal = view.findViewById(R.id.a3tal_Recycler);
-
     }
 
     Dialog dialog;
@@ -85,23 +87,19 @@ public class RepairDone extends Fragment implements View.OnClickListener {
         }
     }
 
-    List<A3tal> a3talList;
-
     private void initRecyclerView() {
-        a3talList = new ArrayList<>();
-        a3talList.add(new A3tal("mohamed safwat", "01117796570", "55"));
-        a3talList.add(new A3tal("Ali", "01150500021", "street-5"));
-        a3talList.add(new A3tal("Seif", "01117796570", "street-44"));
-        a3talList.add(new A3tal("Omar", "01117796570", "street-33"));
-        a3talList.add(new A3tal("Nassar", "01117796570", "street-543"));
-        a3talList.add(new A3tal("Hamada", "01117796570", "street-18"));
-        a3talList.add(new A3tal(" sssss", "01117796570", "street-1"));
-
-        a3taalAdapter = new A3taalAdapter(getActivity(), a3talList);
+        a3taalAdapter = new A3taalAdapter(getActivity(), null);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewA3tal.setHasFixedSize(true);
         recyclerViewA3tal.setAdapter(a3taalAdapter);
         recyclerViewA3tal.setLayoutManager(layoutManager);
+
+        vm.A3talDone.observe(getActivity(), new Observer<List<A3tal>>() {
+            @Override
+            public void onChanged(List<A3tal> a3tals) {
+                a3taalAdapter.Change(a3tals);
+            }
+        });
 
         a3taalAdapter.setOnItem3tlOnClickListener(new A3taalAdapter.onItem3tlOnClickListener() {
             @Override
@@ -117,6 +115,16 @@ public class RepairDone extends Fragment implements View.OnClickListener {
                 dialog.show();
 
                 Button cancel = dialog.findViewById(R.id.cancel);
+                TextView Name = dialog.findViewById(R.id.Name);
+                Name.setText(a3tal.getName());
+                TextView Address = dialog.findViewById(R.id.Phone);
+                Address.setText(a3tal.getAddress());
+                TextView Phone = dialog.findViewById(R.id.Address);
+                Phone.setText(a3tal.getPhone());
+                TextView Note = dialog.findViewById(R.id.Note);
+                Note.setText(a3tal.getNote());
+                TextView Date = dialog.findViewById(R.id.Date);
+                Date.setText(a3tal.getDate());
 
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -125,7 +133,18 @@ public class RepairDone extends Fragment implements View.OnClickListener {
                     }
                 });
             }
+
+        });
+
+        a3taalAdapter.setOnDeleteClickListner(new A3taalAdapter.onDeleteClickListner() {
+            @Override
+            public void onClick(int position, A3tal fatora) {
+                vm.Delete3otlDone(fatora);
+                a3taalAdapter.Delete(position);
+                Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }
+
 }

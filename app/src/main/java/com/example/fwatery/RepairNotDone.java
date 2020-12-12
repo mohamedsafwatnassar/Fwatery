@@ -8,21 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.fwatery.Base.BaseFragment;
 import com.example.fwatery.Models.A3tal;
-import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RepairNotDone extends BaseFragment {
@@ -31,16 +27,15 @@ public class RepairNotDone extends BaseFragment {
     A3taalAdapter a3taalAdapter;
     RecyclerView.LayoutManager layoutManager;
 
-    A3tal_VM vm ;
+    A3tal_VM vm;
 
-    FloatingActionButton fab ;
+    FloatingActionButton fab;
+    Dialog dialog;
+    View view;
 
     public RepairNotDone() {
         // Required empty public constructor
     }
-    Dialog dialog;
-
-    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +43,10 @@ public class RepairNotDone extends BaseFragment {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
         view = inflater.inflate(R.layout.repair_not_done, container, false);
-        getActivity().setTitle("أعطال                                  ");
+        getActivity().setTitle("أعطال                                 ");
 
         initView();
         initRecyclerView();
-
 
 
         return view;
@@ -61,85 +55,77 @@ public class RepairNotDone extends BaseFragment {
     private void initView() {
         recyclerViewA3tal = view.findViewById(R.id.a3tal_Recycler);
         fab = view.findViewById(R.id.add_3otl);
-fab.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.add_a3tal);
 
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        //dialog.getWindow().setGravity(Gravity.CENTER);
-        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-        dialog.setCancelable(false);
-        dialog.show();
-        Button add3otl = dialog.findViewById(R.id.Add_3otll);
-        Button cancel = dialog.findViewById(R.id.cancel);
-        EditText Name = dialog.findViewById(R.id.Name);
-        EditText Address = dialog.findViewById(R.id.Phone);
-        EditText Phone = dialog.findViewById(R.id.Address);
-        EditText Note = dialog.findViewById(R.id.Note);
-
-        add3otl.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                A3tal a3tal = new A3tal();
-                a3tal.setName(Name.getText().toString());
-                a3tal.setAddress(Address.getText().toString());
-                a3tal.setNote(Note.getText().toString());
-                a3tal.setPhone(Phone.getText().toString());
-                vm.AddA3talNotDone(a3tal);
-                dialog.dismiss();
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.add_a3tal);
+
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                //dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+                dialog.setCancelable(false);
+                dialog.show();
+                Button add3otl = dialog.findViewById(R.id.Add_3otll);
+                Button cancel = dialog.findViewById(R.id.cancel);
+                EditText Name = dialog.findViewById(R.id.Name);
+                EditText Address = dialog.findViewById(R.id.Phone);
+                EditText Phone = dialog.findViewById(R.id.Address);
+                EditText Note = dialog.findViewById(R.id.Note);
+
+                add3otl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        A3tal a3tal = new A3tal();
+                        a3tal.setName(Name.getText().toString());
+                        a3tal.setAddress(Address.getText().toString());
+                        a3tal.setNote(Note.getText().toString());
+                        a3tal.setPhone(Phone.getText().toString());
+                        vm.AddA3talNotDone(a3tal);
+                        dialog.dismiss();
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
+
         });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
     }
-});
-
-
-    }
-
-
-
-
 
     private void initRecyclerView() {
-
-
         a3taalAdapter = new A3taalAdapter(getActivity(), null);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewA3tal.setHasFixedSize(true);
         recyclerViewA3tal.setAdapter(a3taalAdapter);
         recyclerViewA3tal.setLayoutManager(layoutManager);
 
+           a3taalAdapter.setOnDeleteClickListner(new A3taalAdapter.onDeleteClickListner() {
+            @Override
+            public void onClick(int position, A3tal fatora) {
+                vm.Delete3otlNotDone(fatora);
+                a3taalAdapter.Delete(position);
+                Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         vm.A3talNotDone.observe(getActivity(), new Observer<List<A3tal>>() {
             @Override
             public void onChanged(List<A3tal> a3tals) {
-                if(a3tals != null){
+                if (a3tals != null) {
                     a3taalAdapter.Change(a3tals);
                 }
             }
         });
 
-
-        vm.Progress.observe(getActivity(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean!=null && aBoolean){
-                    showProgressDialog("Loading...");
-                }
-                else hideProgressDialog();
-            }
-        });
 
         a3taalAdapter.setOnItem3tlOnClickListener(new A3taalAdapter.onItem3tlOnClickListener() {
             @Override
@@ -185,8 +171,6 @@ fab.setOnClickListener(new View.OnClickListener() {
 
         });
 
-
     }
-
 
 }

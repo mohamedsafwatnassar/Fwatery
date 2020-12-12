@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +25,8 @@ import com.orhanobut.hawk.Hawk;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.example.fwatery.MainActivity.bottomNavigation;
 
 public class FatoraNotDone extends BaseFragment {
 
@@ -42,6 +45,12 @@ public class FatoraNotDone extends BaseFragment {
     public FatoraNotDone() {
         // Required empty public constructor
     }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bottomNavigation.show(1,false);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +59,6 @@ public class FatoraNotDone extends BaseFragment {
         vm = new ViewModelProvider(getActivity()).get(Fatora_Vm.class);
 
         view = inflater.inflate(R.layout.fragment_fatora_not_done, container, false);
-
 
         getActivity().setTitle("فواتير غير مدفوعه                          ");
 
@@ -61,7 +69,6 @@ public class FatoraNotDone extends BaseFragment {
     }
 
     private void initRecyclerView() {
-
         fatoraAdapter = new FatoraAdapter(getActivity(),null);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerViewFatoraNotDone.setHasFixedSize(true);
@@ -97,7 +104,6 @@ public class FatoraNotDone extends BaseFragment {
                 Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
         fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
@@ -154,7 +160,6 @@ public class FatoraNotDone extends BaseFragment {
         fab = view.findViewById(R.id.add_fat);
         Total = view.findViewById(R.id.Total);
         numList = view.findViewById(R.id.numList);
-
 
         if(Hawk.get("User").equals(false)){
             fab.setVisibility(View.INVISIBLE);

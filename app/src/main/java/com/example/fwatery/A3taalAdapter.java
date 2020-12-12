@@ -32,6 +32,10 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
         a3talList = a3tal ;
         notifyDataSetChanged();
     }
+    public void Delete(int pos){
+        notifyItemRemoved(pos);
+    }
+
     @NonNull
     @Override
     public A3talViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,9 +70,22 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
                 }
             });
         }
+        if(onDeleteClickListner!=null){
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDeleteClickListner.onClick(position,a3taal);
+                }
+            });
+        }
     }
 
     onItem3tlOnClickListener onItem3tlOnClickListener;
+   onDeleteClickListner onDeleteClickListner;
+
+    public void setOnDeleteClickListner(A3taalAdapter.onDeleteClickListner onDeleteClickListner) {
+        this.onDeleteClickListner = onDeleteClickListner;
+    }
 
     public A3taalAdapter.onItem3tlOnClickListener getOnItem3tlOnClickListener() {
         return onItem3tlOnClickListener;
@@ -80,6 +97,9 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
 
     public interface onItem3tlOnClickListener {
         public void onClick(int postion, A3tal a3tal);
+    }
+    public interface onDeleteClickListner {
+        public void onClick(int position, A3tal a3tal);
     }
     @Override
     public int getItemCount() {
