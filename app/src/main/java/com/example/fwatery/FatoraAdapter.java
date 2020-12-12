@@ -67,14 +67,18 @@ public class FatoraAdapter extends RecyclerView.Adapter<FatoraAdapter.FatoraView
                 }
             });
         }
-        if(onDeleteClickListner!=null){
-            holder.delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                onDeleteClickListner.onClick(position,fatora);
-                }
-            });
+        if(Hawk.get("User").equals(true)) {
+            if(onDeleteClickListner!=null){
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onDeleteClickListner.onClick(position,fatora);
+                    }
+                });
+            }
         }
+
+
     }
 
     @Override

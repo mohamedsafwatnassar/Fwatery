@@ -2,13 +2,16 @@ package com.example.fwatery;
 
 import android.content.Context;
 
-import androidx.multidex.MultiDex;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.orhanobut.hawk.Hawk;
 
 public class Application extends android.app.Application {
 
-
+    static {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+    }
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

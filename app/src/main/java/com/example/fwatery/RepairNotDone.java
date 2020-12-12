@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fwatery.Base.BaseFragment;
 import com.example.fwatery.Models.A3tal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.List;
 
@@ -55,6 +56,10 @@ public class RepairNotDone extends BaseFragment {
     private void initView() {
         recyclerViewA3tal = view.findViewById(R.id.a3tal_Recycler);
         fab = view.findViewById(R.id.add_3otl);
+
+        if(Hawk.get("User").equals(false)){
+            fab.setVisibility(View.INVISIBLE);
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

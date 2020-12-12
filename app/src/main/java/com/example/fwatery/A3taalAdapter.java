@@ -70,14 +70,19 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
                 }
             });
         }
-        if(onDeleteClickListner!=null){
-            holder.delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onDeleteClickListner.onClick(position,a3taal);
-                }
-            });
+        if(Hawk.get("User").equals(true)){
+            if(onDeleteClickListner!=null){
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onDeleteClickListner.onClick(position,a3taal);
+                    }
+                });
+            }
+
         }
+
+
     }
 
     onItem3tlOnClickListener onItem3tlOnClickListener;
