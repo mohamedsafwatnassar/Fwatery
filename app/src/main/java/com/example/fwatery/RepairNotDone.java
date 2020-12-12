@@ -20,15 +20,12 @@ import com.example.fwatery.Base.BaseFragment;
 import com.example.fwatery.Models.A3tal;
 import com.example.fwatery.Models.Fatora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class a3taal extends BaseFragment {
-
-    TabLayout tabLayout;
+public class RepairNotDone extends BaseFragment {
 
     RecyclerView recyclerViewA3tal;
     A3taalAdapter a3taalAdapter;
@@ -38,82 +35,74 @@ public class a3taal extends BaseFragment {
 
     FloatingActionButton fab ;
 
-
+    public RepairNotDone() {
+        // Required empty public constructor
+    }
     Dialog dialog;
 
     View view;
-
-    public a3taal() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
-        view = inflater.inflate(R.layout.fragment_a3taal, container, false);
+        view = inflater.inflate(R.layout.repair_not_done, container, false);
         getActivity().setTitle("أعطال                                  ");
 
         initView();
         initRecyclerView();
 
-        tabLayout.newTab().setText("تم التصليح");
-        tabLayout.newTab().setText("لم يتم التصليح");
+
 
         return view;
     }
 
-
-
     private void initView() {
         recyclerViewA3tal = view.findViewById(R.id.a3tal_Recycler);
         fab = view.findViewById(R.id.add_3otl);
-        tabLayout = view.findViewById(R.id.tabLayout);
+fab.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.add_a3tal);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+        dialog.setCancelable(false);
+        dialog.show();
+        Button add3otl = dialog.findViewById(R.id.Add_3otll);
+        Button cancel = dialog.findViewById(R.id.cancel);
+        EditText Name = dialog.findViewById(R.id.Name);
+        EditText Address = dialog.findViewById(R.id.Phone);
+        EditText Phone = dialog.findViewById(R.id.Address);
+        EditText Note = dialog.findViewById(R.id.Note);
+
+        add3otl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.add_a3tal);
-
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                //dialog.getWindow().setGravity(Gravity.CENTER);
-                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-                dialog.setCancelable(false);
-                dialog.show();
-                Button add3otl = dialog.findViewById(R.id.Add_3otll);
-                Button cancel = dialog.findViewById(R.id.cancel);
-                EditText Name = dialog.findViewById(R.id.Name);
-                EditText Address = dialog.findViewById(R.id.Phone);
-                EditText Phone = dialog.findViewById(R.id.Address);
-                EditText Note = dialog.findViewById(R.id.Note);
-
-                add3otl.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        A3tal a3tal = new A3tal();
-                        a3tal.setName(Name.getText().toString());
-                        a3tal.setAddress(Address.getText().toString());
-                        a3tal.setNote(Note.getText().toString());
-                        a3tal.setPhone(Phone.getText().toString());
-                        vm.AddA3talNotDone(a3tal);
-                        dialog.dismiss();
-                    }
-                });
-
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
+                A3tal a3tal = new A3tal();
+                a3tal.setName(Name.getText().toString());
+                a3tal.setAddress(Address.getText().toString());
+                a3tal.setNote(Note.getText().toString());
+                a3tal.setPhone(Phone.getText().toString());
+                vm.AddA3talNotDone(a3tal);
+                dialog.dismiss();
             }
         });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+});
 
 
     }
@@ -198,8 +187,6 @@ public class a3taal extends BaseFragment {
 
 
     }
-
-
 
 
 }

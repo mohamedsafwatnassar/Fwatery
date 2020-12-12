@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fwatery.Models.A3tal;
 import com.example.fwatery.Models.Fatora;
+import com.orhanobut.hawk.Hawk;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,11 +28,22 @@ public class A3taalAdapter extends RecyclerView.Adapter<A3taalAdapter.A3talViewH
         this.context = context;
     }
 
+    public void Change(List<A3tal> a3tal){
+        a3talList = a3tal ;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public A3talViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_3tl, parent,false);
-        return new A3talViewHolder(view);
+
+        View view ;
+        if(Hawk.get("User").equals(true)){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_3tl, parent,false);
+        }
+        else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_3tl, parent,false);
+        }
+        return new A3taalAdapter.A3talViewHolder(view);
     }
 
     @Override

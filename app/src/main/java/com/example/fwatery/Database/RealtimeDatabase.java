@@ -8,6 +8,8 @@ public class RealtimeDatabase {
     private static final String User_Ref = "Users";
     private static final String FatoraDone_Ref = "Fatorda_Done";
     private static final String FatoraNotDone_Ref = "Fatorda_Not_Done";
+    private static final String A3talNotDone_Ref = "A3tal_Not_Done";
+    private static final String A3talDone_Ref = "A3tal_Done";
 
     private static FirebaseDatabase database;
 
@@ -27,6 +29,14 @@ public class RealtimeDatabase {
 
    public static DatabaseReference getFatoraNotDone(){
         return getInstance().getReference().child(FatoraNotDone_Ref);
+    }
+
+    public static DatabaseReference getA3talNotDone(){
+        return getInstance().getReference().child(A3talNotDone_Ref);
+    }
+
+    public static DatabaseReference getA3talDone(){
+        return getInstance().getReference().child(A3talDone_Ref);
     }
 
 }
