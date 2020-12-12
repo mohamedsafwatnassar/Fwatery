@@ -42,7 +42,7 @@ public class RepairDone extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
         view = inflater.inflate(R.layout.repair_done, container, false);
-        getActivity().setTitle("أعطال                                  ");
+        getActivity().setTitle("أعطال                                ");
 
         initView();
         initRecyclerView();
@@ -133,7 +133,6 @@ public class RepairDone extends Fragment implements View.OnClickListener {
                     }
                 });
             }
-
         });
 
         a3taalAdapter.setOnDeleteClickListner(new A3taalAdapter.onDeleteClickListner() {

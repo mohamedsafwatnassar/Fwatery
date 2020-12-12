@@ -43,7 +43,7 @@ public class RepairNotDone extends BaseFragment {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
         view = inflater.inflate(R.layout.repair_not_done, container, false);
-        getActivity().setTitle("أعطال                                 ");
+        getActivity().setTitle("أعطال                                ");
 
         initView();
         initRecyclerView();
