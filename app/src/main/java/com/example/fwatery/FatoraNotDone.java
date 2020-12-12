@@ -51,7 +51,6 @@ public class FatoraNotDone extends BaseFragment {
         bottomNavigation.show(1,false);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class FatoraNotDone extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_fatora_not_done, container, false);
 
-        getActivity().setTitle("فواتير غير مدفوعه                          ");
+        getActivity().setTitle("فواتير غير مدفوعه                        ");
 
         initView();
 
@@ -104,7 +103,6 @@ public class FatoraNotDone extends BaseFragment {
                 Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         fatoraAdapter.setOnFatoraClickListener(new FatoraAdapter.onFatoraClickListener() {
             @Override
@@ -165,13 +163,12 @@ public class FatoraNotDone extends BaseFragment {
             fab.setVisibility(View.INVISIBLE);
         }
 
-         vm.TotalNot.observe(getActivity(), new Observer<Double>() {
+        vm.TotalNot.observe(getActivity(), new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
                 Total.setText(""+aDouble+" $");
             }
         });
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

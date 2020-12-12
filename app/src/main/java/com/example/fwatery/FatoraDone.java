@@ -53,7 +53,7 @@ public class FatoraDone extends Fragment {
         view = inflater.inflate(R.layout.fragment_fatora_done, container, false);
 
 
-        getActivity().setTitle("فواتير مدفوعه                            ");
+        getActivity().setTitle("فواتير مدفوعه                           ");
         initView();
         initRecyclerView();
         return view;
@@ -71,8 +71,6 @@ public class FatoraDone extends Fragment {
             }
         });
 
-
-
     }
 
     Dialog dialog;
@@ -83,7 +81,6 @@ public class FatoraDone extends Fragment {
         recyclerViewFatoraDone.setAdapter(fatoraAdapter);
         recyclerViewFatoraDone.setLayoutManager(layoutManager);
 
-
         vm.FatoraDone.observe(getActivity(), new Observer<List<Fatora>>() {
             @Override
             public void onChanged(List<Fatora> fatoras) {
@@ -93,7 +90,9 @@ public class FatoraDone extends Fragment {
                 }
             }
         });
-          fatoraAdapter.setOnDeleteClickListner(new FatoraAdapter.onDeleteClickListner() {
+
+
+        fatoraAdapter.setOnDeleteClickListner(new FatoraAdapter.onDeleteClickListner() {
             @Override
             public void onClick(int position, Fatora fatora) {
                 vm.DeleteFatoraDone(fatora);

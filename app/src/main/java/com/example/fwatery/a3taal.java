@@ -56,7 +56,7 @@ public class a3taal extends BaseFragment {
         // Inflate the layout for this fragment
         vm = new ViewModelProvider(getActivity()).get(A3tal_VM.class);
         view = inflater.inflate(R.layout.fragment_a3taal, container, false);
-        getActivity().setTitle("أعطال                                  ");
+        getActivity().setTitle("أعطال                                 ");
 
         initView();
 
